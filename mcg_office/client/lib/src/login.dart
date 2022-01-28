@@ -10,27 +10,12 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     _loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Scaffold(
+      resizeToAvoidBottomInset: false, // 키보드에따라 화면밀림 방지.
       appBar: AppBar(
-        title: Text("Provider sample"),
+        title: const Text("Login"),
+        // centerTitle: true,
       ),
-      body: LoginWidget(),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end, // 끝부분으로 밀착
-        children: [
-          IconButton(
-            onPressed: () {
-              _loginProvider.add();
-            },
-            icon: Icon(Icons.add),
-          ),
-          IconButton(
-            onPressed: () {
-              _loginProvider.remove();
-            },
-            icon: Icon(Icons.remove),
-          )
-        ],
-      ),
+      body: const LoginWidget(),
     );
   }
 }
