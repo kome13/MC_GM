@@ -1,16 +1,22 @@
 import 'package:flutter/foundation.dart';
 
-class LoginProvider extends ChangeNotifier {
-  int _count = 0; // _추가하여 외부접근 방지.
-  int get count => _count;
+class IdCheckProvider extends ChangeNotifier {
+  bool _isNotifiable = false; // _추가하여 외부접근 방지.
 
-  add() {
-    _count++;
+  bool get isNotifiable => _isNotifiable;
+
+  void toggleNotification({bool isNotifiable = true}) {
+    // ? 바꾸는 함순데
+    this._isNotifiable = isNotifiable; //
     notifyListeners();
   }
+}
 
-  remove() {
-    _count--;
+class Loginbutton extends ChangeNotifier {
+  Map data = {'id': '', 'password': ''};
+
+  void inputAccount(input) {
+    data = input;
     notifyListeners();
   }
 }

@@ -4,7 +4,13 @@ import 'package:mcg_office/src/provider/login_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => IdCheckProvider()),
+      ChangeNotifierProvider(create: (_) => Loginbutton()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,14 +21,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MCG_OFFICE',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChangeNotifierProvider(
-        create: (BuildContext context) => LoginProvider(),
-        child: Login(),
-      ),
+      home: Login(),
     );
   }
 }

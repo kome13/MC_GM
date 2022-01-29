@@ -8,27 +8,24 @@ class LoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginProvider>(
-      // provider. consumer로 감싸고
-      builder: (context, provider, child) {
-        return Container(
-            // 기본 컨테이너 단위로 묶어서
-            padding: const EdgeInsets.all(15.0), // 컨테이너 페딩추가.
-            child: Column(
-              // childe 로 컬럼형태의 위젯배열 올리고
-              mainAxisAlignment: MainAxisAlignment.start, // 주축 가운데 정렬
-              crossAxisAlignment: CrossAxisAlignment.center, // 횡축 가운데 정렬
+    return Container(
+        // 기본 컨테이너 단위로 묶어서
+        padding: const EdgeInsets.all(15.0), // 컨테이너 페딩추가.
 
-              children: <Widget>[
-                // 컬럼 리스트로 각각의 위젯 출력
-                _titleText(), // title 글씨
-                _buildIdInput(), // ID 입력 위젯
-                _buildPasswordInput(), // password 입력 위젯
-                _buildSubmitButton(),
-              ],
-            ));
-      },
-    );
+        child: Column(
+          // childe 로 컬럼형태의 위젯배열 올리고
+          mainAxisAlignment: MainAxisAlignment.start, // 주축 가운데 정렬
+          crossAxisAlignment: CrossAxisAlignment.center, // 횡축 가운데 정렬
+
+          children: <Widget>[
+            // 컬럼 리스트로 각각의 위젯 출력
+            _titleText(), // title 글씨
+            _buildIdInput(), // ID 입력 위젯
+            _buildPasswordInput(), // password 입력 위젯
+            _idCheck(), // id 저장 버튼
+            _buildSubmitButton(),
+          ],
+        ));
   }
 
   // 타이틀 위젯
@@ -37,7 +34,7 @@ class LoginWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       alignment: Alignment.centerLeft, // 200의 중간 왼쪽정렬
       width: double.infinity, // 가로 width 100%
-      height: 180,
+      height: 110,
       child: const Text(
         "목포도시가스",
         style: TextStyle(
@@ -52,14 +49,16 @@ class LoginWidget extends StatelessWidget {
   Widget _buildIdInput() {
     return Container(
       margin: const EdgeInsets.all(10),
-      child: TextFormField(
+      child: TextField(
         keyboardType: TextInputType.text, // id text형으로 입력받기
         autocorrect: false, //자동완성 끄기.
         autofocus: false, // 자동 초점설정 끄기
+
         style: const TextStyle(fontSize: 20), //글자입,출력 크기조정
         decoration: InputDecoration(
           labelText: 'ID',
-          prefixIconConstraints: BoxConstraints(minWidth: 20, maxHeight: 20),
+          prefixIconConstraints:
+              const BoxConstraints(minWidth: 20, maxHeight: 20),
           prefixIcon: Padding(
             padding: const EdgeInsets.only(left: 15, right: 10),
             child: SvgPicture.asset(
@@ -78,14 +77,15 @@ class LoginWidget extends StatelessWidget {
   Widget _buildPasswordInput() {
     return Container(
         margin: const EdgeInsets.all(10),
-        child: TextFormField(
+        child: TextField(
           autocorrect: false,
           autofocus: false,
           keyboardType: TextInputType.text,
           style: const TextStyle(fontSize: 20),
           decoration: InputDecoration(
             labelText: 'PASSWORD',
-            prefixIconConstraints: BoxConstraints(minWidth: 20, maxHeight: 20),
+            prefixIconConstraints:
+                const BoxConstraints(minWidth: 20, maxHeight: 20),
             prefixIcon: Padding(
               padding: const EdgeInsets.only(left: 15, right: 10),
               child: SvgPicture.asset(
@@ -101,14 +101,48 @@ class LoginWidget extends StatelessWidget {
         ));
   }
 
-  //fhrmdls 버튼 위젯
+  //아이디 저장 상태 유무 버튼
+  Widget _idCheck() {
+    return Container(
+      height: 50,
+      width: double.infinity,
+      child: Row(
+        children: <Widget>[
+          Container(
+            child: const Text(
+              "아이디 저장",
+              style: TextStyle(
+                fontWeight: FontWeight.w200,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          Consumer<IdCheckProvider>(
+            // consumer 이용해서 context를 통해서 value 변수로 값을 주고 받는다.
+            builder: (context, value, child) => Switch(
+                // 변수 value, 적용범위 child
+                onChanged: (bool isNoti) {
+                  // 매개변수 isNti
+                  value.toggleNotification(
+                      isNotifiable:
+                          isNoti); // provider에 정의된 토글 함수에 변수 isNoti를 대입
+                },
+                value: value.isNotifiable),
+          )
+        ],
+      ),
+    );
+  }
+
+  //로그인 버튼 위젯
   Widget _buildSubmitButton() {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
       width: double.infinity,
       height: 60,
       child: ElevatedButton(
           // 블럭 효과보이는 버튼
-          onPressed: () {},
+          onPressed: () {}, // alert 경고창 모듈 만들어서 호출하기.
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(

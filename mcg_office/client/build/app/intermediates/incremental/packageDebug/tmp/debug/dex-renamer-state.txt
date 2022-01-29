@@ -1,4 +1,4 @@
-#Fri Jan 28 23:36:52 KST 2022
+#Sat Jan 29 15:45:03 KST 2022
 base.0=C\:\\StudioProjects\\mcg_office\\client\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
