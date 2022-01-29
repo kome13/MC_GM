@@ -4,7 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginWidget extends StatelessWidget {
-  const LoginWidget({Key? key}) : super(key: key);
+  LoginWidget({Key? key}) : super(key: key);
+
+  final _idController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class LoginWidget extends StatelessWidget {
             _buildIdInput(), // ID 입력 위젯
             _buildPasswordInput(), // password 입력 위젯
             _idCheck(), // id 저장 버튼
-            _buildSubmitButton(),
+            _buildSubmitButton(context),
           ],
         ));
   }
@@ -49,13 +52,15 @@ class LoginWidget extends StatelessWidget {
   Widget _buildIdInput() {
     return Container(
       margin: const EdgeInsets.all(10),
-      child: TextField(
+      child: TextFormField(
         keyboardType: TextInputType.text, // id text형으로 입력받기
         autocorrect: false, //자동완성 끄기.
         autofocus: false, // 자동 초점설정 끄기
-
+        controller: _idController,
+        onSaved: (value) => _idController.text = value!.trim(),
         style: const TextStyle(fontSize: 20), //글자입,출력 크기조정
         decoration: InputDecoration(
+          filled: true, // 뒷 배경 색채우기
           labelText: 'ID',
           prefixIconConstraints:
               const BoxConstraints(minWidth: 20, maxHeight: 20),
@@ -77,12 +82,15 @@ class LoginWidget extends StatelessWidget {
   Widget _buildPasswordInput() {
     return Container(
         margin: const EdgeInsets.all(10),
-        child: TextField(
+        child: TextFormField(
           autocorrect: false,
           autofocus: false,
+          controller: _passwordController,
+          onSaved: (value) => _passwordController.text = value!.trim(),
           keyboardType: TextInputType.text,
           style: const TextStyle(fontSize: 20),
           decoration: InputDecoration(
+            filled: true, // 뒷 배경 색채우기
             labelText: 'PASSWORD',
             prefixIconConstraints:
                 const BoxConstraints(minWidth: 20, maxHeight: 20),
@@ -135,14 +143,16 @@ class LoginWidget extends StatelessWidget {
   }
 
   //로그인 버튼 위젯
-  Widget _buildSubmitButton() {
+  Widget _buildSubmitButton(context) {
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
       width: double.infinity,
       height: 60,
       child: ElevatedButton(
           // 블럭 효과보이는 버튼
-          onPressed: () {}, // alert 경고창 모듈 만들어서 호출하기.
+          onPressed: () {
+            _showDialog(context, _idController.text, _passwordController.text);
+          }, // alert 경고창 모듈 만들어서
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
@@ -166,6 +176,29 @@ class LoginWidget extends StatelessWidget {
             "Login",
             style: TextStyle(fontSize: 20),
           )),
+    );
+  }
+
+  void _showDialog(context, String a, String b) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          title: new Text("id/password test"),
+          content: SingleChildScrollView(child: new Text('$a $b')),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

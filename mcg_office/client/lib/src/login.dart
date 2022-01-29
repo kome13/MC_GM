@@ -15,7 +15,7 @@ class Login extends StatelessWidget {
         title: const Text("Login"),
         // centerTitle: true,
       ),
-      body: const LoginWidget(),
+      body: LoginWidget(),
     );
   }
 }
