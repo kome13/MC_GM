@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mcg_office/src/login.dart';
+import 'package:mcg_office/src/component/login.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
+import 'package:mcg_office/src/routes/routes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      initialRoute: '/',
+      routes: routes,
     );
   }
 }

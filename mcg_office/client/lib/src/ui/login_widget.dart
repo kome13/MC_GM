@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mcg_office/src/component/home.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -51,7 +52,8 @@ class LoginWidget extends StatelessWidget {
   // id 입력위젯
   Widget _buildIdInput() {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(6),
+      padding: const EdgeInsets.symmetric(horizontal: 9),
       child: TextFormField(
         keyboardType: TextInputType.text, // id text형으로 입력받기
         autocorrect: false, //자동완성 끄기.
@@ -81,7 +83,8 @@ class LoginWidget extends StatelessWidget {
   //password 입력위젯
   Widget _buildPasswordInput() {
     return Container(
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(6),
+        padding: const EdgeInsets.symmetric(horizontal: 9),
         child: TextFormField(
           autocorrect: false,
           autofocus: false,
@@ -112,6 +115,7 @@ class LoginWidget extends StatelessWidget {
   //아이디 저장 상태 유무 버튼
   Widget _idCheck() {
     return Container(
+      margin: const EdgeInsets.only(left: 15),
       height: 50,
       width: double.infinity,
       child: Row(
@@ -145,13 +149,31 @@ class LoginWidget extends StatelessWidget {
   //로그인 버튼 위젯
   Widget _buildSubmitButton(context) {
     return Container(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
       width: double.infinity,
       height: 60,
       child: ElevatedButton(
           // 블럭 효과보이는 버튼
           onPressed: () {
-            _showDialog(context, _idController.text, _passwordController.text);
+            //id가 비었을경우
+            if (_idController.text.isEmpty) {
+              _showDialog(
+                context,
+                'ID를 입력해 주세요',
+              );
+            }
+            //password가 비었을 경우
+            else if (_passwordController.text.isEmpty) {
+              _showDialog(
+                context,
+                'PASSWORD를 입력해 주세요',
+              );
+            }
+            //입력칸이 전부 입려된 경우. 로그인 함수로 일치, 불일치 실행.
+            else {
+              print('login함수');
+              Navigator.pushNamed(context, '/home');
+            }
           }, // alert 경고창 모듈 만들어서
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -179,7 +201,7 @@ class LoginWidget extends StatelessWidget {
     );
   }
 
-  void _showDialog(context, String a, String b) {
+  void _showDialog(context, String a) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -187,14 +209,16 @@ class LoginWidget extends StatelessWidget {
         return AlertDialog(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          title: new Text("id/password test"),
-          content: SingleChildScrollView(child: new Text('$a $b')),
+          title: new Text("다시 입력해주세요."),
+          content: SingleChildScrollView(child: new Text('$a')),
           actions: <Widget>[
-            new FlatButton(
-              child: new Text("Close"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+            Container(
+              child: new FlatButton(
+                child: const Text("Close"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
             ),
           ],
         );
