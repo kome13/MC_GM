@@ -24,8 +24,8 @@ class LoginWidget extends StatelessWidget {
           children: <Widget>[
             // 컬럼 리스트로 각각의 위젯 출력
             _titleText(), // title 글씨
-            _buildIdInput(), // ID 입력 위젯
-            _buildPasswordInput(), // password 입력 위젯
+            _buildIdInput(context), // ID 입력 위젯
+            _buildPasswordInput(context), // password 입력 위젯
             _idCheck(), // id 저장 버튼
             _buildSubmitButton(context),
           ],
@@ -50,7 +50,7 @@ class LoginWidget extends StatelessWidget {
   }
 
   // id 입력위젯
-  Widget _buildIdInput() {
+  Widget _buildIdInput(context) {
     return Container(
       margin: const EdgeInsets.all(6),
       padding: const EdgeInsets.symmetric(horizontal: 9),
@@ -81,7 +81,7 @@ class LoginWidget extends StatelessWidget {
   }
 
   //password 입력위젯
-  Widget _buildPasswordInput() {
+  Widget _buildPasswordInput(context) {
     return Container(
         margin: const EdgeInsets.all(6),
         padding: const EdgeInsets.symmetric(horizontal: 9),
@@ -171,8 +171,13 @@ class LoginWidget extends StatelessWidget {
             }
             //입력칸이 전부 입려된 경우. 로그인 함수로 일치, 불일치 실행.
             else {
+              Provider.of<Loginbutton>(context, listen: false)
+                  .inputAccount(_idController.text); // id 값 provider저장.
               print('login함수');
-              Navigator.pushNamed(context, '/home');
+              Navigator.pushNamed(
+                context,
+                '/home',
+              );
             }
           }, // alert 경고창 모듈 만들어서
           style: ButtonStyle(

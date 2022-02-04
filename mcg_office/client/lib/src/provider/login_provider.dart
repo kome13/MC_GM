@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/src/widgets/editable_text.dart';
 
 class IdCheckProvider extends ChangeNotifier {
   bool _isNotifiable = false; // _추가하여 외부접근 방지.
@@ -13,10 +14,14 @@ class IdCheckProvider extends ChangeNotifier {
 }
 
 class Loginbutton extends ChangeNotifier {
-  Map data = {'id': '', 'password': ''};
+  String _user = "";
+  String get user => _user;
 
   void inputAccount(input) {
-    data = input;
+    print(_user);
+    print(input);
+    _user = input;
+
     notifyListeners();
   }
 }
