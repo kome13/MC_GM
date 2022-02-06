@@ -1,28 +1,35 @@
+// const fs = require('fs');
+const express = require('express');
+// const cors = require('cors');
+const app = express();
+const port = process.env.PORT || 5000;
 
+const config = require('./database_config.json');
+const mysql = require('mysql');
+const { json } = require('express/lib/response');
+const pool =mysql.createPool(config);
 
-const express = require('express') 
-const connection = require('./database');
-const app = express()
+app.use(express.json());
 
-//db연결
-connection.connect();
+app.post('/user',(req,res)=>{
 
-// api post 
-app.post('/user', (req, res) => {
-    var uid = req.body.userid;
-    var password = req.body.password;
-    //var userid = req.body.userid;
-
-    var sql ="SELECT 'uid' FROM USER WHERE uid = ? AND password = ?;"
-    connection.query(sql), // 쿼리작동
-        function (error,result,fields) { // 결과는 result에 담김.
-            if(error) {
-                res.send('error'); //에러발생시 에러 출력
-            }
-            else {
-                res.send(result);   
-            }
+    const uid = req.body.uid;
+    const password =req.body.password;
+    var sql = "SELECT uid FROM user WHERE uid = ? AND password =?";
+    pool.query(sql,[uid,password], (err,results,fields)=>{
+        if(err){
+            console.log(err);
+            res.json({
+                cmd:502,
+                err:err
+            });
+        }else{  
+            console.log("작동");
+            res.json(results);
         }
-  })
-  
-  app.listen(5000)
+    })
+
+});
+
+
+app.listen (port, () => console.log(`${port}`));

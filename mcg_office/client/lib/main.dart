@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:mcg_office/src/component/login.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
 import 'package:mcg_office/src/routes/routes.dart';
+import 'package:mcg_office/src/widget/login_widget.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => IdCheckProvider()),
-      ChangeNotifierProvider(create: (_) => Loginbutton()),
+      ChangeNotifierProvider(
+        create: (BuildContext context) => Loginbutton(),
+        child: LoginWidget(),
+      ),
     ],
     child: MyApp(),
   ));
@@ -26,8 +29,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
-      routes: routes,
+      initialRoute: 'landing',
+      onGenerateRoute: Routers.generateRoute,
     );
   }
 }
