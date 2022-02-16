@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mcg_office/src/component/Inout.dart';
 import 'package:mcg_office/src/component/login.dart';
 import 'package:mcg_office/src/component/home.dart';
 import 'package:mcg_office/src/component/landing.dart';
@@ -12,6 +13,8 @@ class Routers {
         return MaterialPageRoute(builder: (_) => Home());
       case 'landing':
         return MaterialPageRoute(builder: (_) => Landing());
+      case 'Inout':
+        return MaterialPageRoute(builder: (_) => Inout());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(
