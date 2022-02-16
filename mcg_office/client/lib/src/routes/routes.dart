@@ -13,7 +13,7 @@ class Routers {
         return MaterialPageRoute(builder: (_) => Home());
       case 'landing':
         return MaterialPageRoute(builder: (_) => Landing());
-      case 'Inout':
+      case 'inout':
         return MaterialPageRoute(builder: (_) => Inout());
       default:
         return MaterialPageRoute(builder: (_) {
