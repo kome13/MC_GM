@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mcg_office/src/widget/bottom_widget.dart';
 // import 'package:provider/provider.dart';
 // import 'package:mcg_office/src/provider/login_provider.dart';
 import 'package:mcg_office/src/widget/home_widget.dart';
@@ -42,7 +43,11 @@ class Home extends StatelessWidget {
             // centerTitle: true,
           ),
           body: HomeWidget(),
+          bottomNavigationBar: BottomWidget(),
         ),
         onWillPop: showExitPopup);
   }
+
+  //샘플 버튼예제 (지우기)
+
 }
