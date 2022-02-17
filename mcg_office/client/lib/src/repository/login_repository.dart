@@ -6,7 +6,7 @@ class UserInfoRepository {
   Future<List<UserInfo>?> login(String id, String password) async {
     try {
       var response =
-          await http.post(Uri.parse("http://121.149.180.26:5000/user"),
+          await http.post(Uri.parse("http://192.168.219.126:5000/user"),
               headers: {
                 "Accept": "application/json",
                 "content-type": "application/json",
