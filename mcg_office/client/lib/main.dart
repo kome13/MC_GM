@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mcg_office/src/provider/inout_provider.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
 import 'package:mcg_office/src/routes/routes.dart';
+import 'package:mcg_office/src/widget/inout_widget.dart';
 import 'package:mcg_office/src/widget/login_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +13,10 @@ void main() {
       ChangeNotifierProvider(
         create: (BuildContext context) => Loginbutton(),
         child: LoginWidget(),
+      ),
+      ChangeNotifierProvider(
+        create: (BuildContext context) => InoutProvider(),
+        child: InoutWiget(),
       ),
     ],
     child: MyApp(),

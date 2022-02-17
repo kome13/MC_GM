@@ -192,7 +192,7 @@ class LoginWidget extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.resolveWith(
                   // 버튼 상태에따라 색상 변경
                   (states) {
-                    if (states.contains(MaterialState.disabled)) {
+                    if (states.contains(MaterialState.pressed)) {
                       return Colors.grey;
                     } else {
                       return Colors.blue;
