@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mcg_office/src/provider/bottom_provider.dart';
 import 'package:mcg_office/src/provider/inout_provider.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
 import 'package:mcg_office/src/routes/routes.dart' show Routers;
+import 'package:mcg_office/src/widget/bottom_widget.dart';
 import 'package:mcg_office/src/widget/login_widget.dart';
 import 'package:provider/provider.dart';
+
+import 'src/widget/inout_widget.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -16,6 +20,10 @@ void main() {
       ChangeNotifierProvider(
         create: (BuildContext context) => InoutProvider(),
         child: InoutWiget(),
+      ),
+      ChangeNotifierProvider(
+        create: (BuildContext context) => ButtomNavigationProvider(), //이부분 수정함
+        child: bottomNavigationBarWidget(),
       ),
     ],
     child: MyApp(),
@@ -34,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: 'inout',
+      initialRoute: 'home',
       onGenerateRoute: Routers.generateRoute,
     );
   }
