@@ -3,7 +3,7 @@ import 'package:mcg_office/src/provider/inout_provider.dart';
 import 'package:provider/provider.dart';
 
 // 리스트 구성요소 출력.
-List _firstList = ['출고', '입고(검정대기)', '입고(폐기대기)']; // 수불구분
+List _firstList = ['출고', '입고      (검정대기)', '입고 (폐기대기)']; // 수불구분
 List _secondList = ['신품', '검정품']; // 계량기구분
 List _thirdList = ['막식2', '막식4', '막식6']; // 계량기등급
 List _fourthList = ['일반', '유선', '다기능', '디지털', '누출알림']; // 유형코드
@@ -123,8 +123,8 @@ class InoutWiget extends StatelessWidget {
           ),
           Row(
             children: [
-              _cancelButton(),
               _okButton(),
+              _cancelButton(),
             ],
           )
         ],

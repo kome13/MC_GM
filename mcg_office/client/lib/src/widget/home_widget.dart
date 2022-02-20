@@ -20,11 +20,12 @@ class HomeWidget extends StatelessWidget {
   // listview 생성 위젯
   Widget _listTest() {
     return Container(
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 30), //
         color: Colors.white,
         height: 70,
         child: const Center(
             child: Text(
-          'list sample',
+          '계량기 수불등록 건별 출력',
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 20,
@@ -36,7 +37,7 @@ class HomeWidget extends StatelessWidget {
   // + 버튼생성
   Widget _inoutButton() {
     return Container(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 30), //
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 30), //
       width: double.infinity,
       height: 150,
       child: ElevatedButton(
