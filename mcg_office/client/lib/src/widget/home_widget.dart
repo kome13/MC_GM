@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mcg_office/src/component/inout.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
+import 'package:mcg_office/src/widget/inout_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomeWidget extends StatelessWidget {
@@ -25,7 +27,7 @@ class HomeWidget extends StatelessWidget {
         height: 70,
         child: const Center(
             child: Text(
-          '계량기 수불등록 건별 출력',
+          '계량기정보 list',
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 20,

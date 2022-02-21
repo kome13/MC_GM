@@ -64,7 +64,7 @@ class Home extends StatelessWidget {
           resizeToAvoidBottomInset: false, // 키보드에따라 화면밀림 방지.
           appBar: AppBar(
             automaticallyImplyLeading: false, // 앱바 뒤로가기버튼 없애기
-            title: const Text("Gauge Management "),
+            title: const Text("수불등록"),
             // centerTitle: true,
           ),
           body: _navigationBody(),
