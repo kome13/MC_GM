@@ -40,7 +40,7 @@ class Home extends StatelessWidget {
           false; //if showDialouge had returned null, then return false
     }
 
-    //업데이
+    //NavtigationBar 화면전환
     Widget _navigationBody() {
       switch (_bottomNavigationBar.currentNavigationIndex) {
         case 0:

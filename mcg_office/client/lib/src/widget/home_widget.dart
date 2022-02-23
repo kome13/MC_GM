@@ -1,17 +1,22 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:mcg_office/src/component/inout.dart';
+import 'package:mcg_office/src/provider/inout_provider.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
 import 'package:mcg_office/src/widget/inout_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomeWidget extends StatelessWidget {
+  get provider => null;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       // 기본 컨테이너 단위로 묶어서
       child: ListView(scrollDirection: Axis.vertical, children: <Widget>[
         _listTest(),
-        _inoutButton(),
+        _inoutButton(context),
         _SelectButton(),
       ]),
     );
@@ -37,15 +42,15 @@ class HomeWidget extends StatelessWidget {
   }
 
   // + 버튼생성
-  Widget _inoutButton() {
+  Widget _inoutButton(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 30), //
       width: double.infinity,
       height: 150,
       child: ElevatedButton(
         onPressed: () {
-          // 버튼 수행 시
-          //print("22");
+          Navigator.pushNamed(context, 'inout');
+          // 버튼 이동 코드 삽입
         },
         style: ButtonStyle(
           foregroundColor:

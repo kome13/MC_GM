@@ -21,6 +21,10 @@ class Routers {
         return MaterialPageRoute(builder: (_) => Inventory());
       case 'history':
         return MaterialPageRoute(builder: (_) => History());
+/*
+      case 'home':
+        return MaterialPageRoute(builder: (_) => Inout());
+*/
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(
