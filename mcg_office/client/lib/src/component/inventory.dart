@@ -10,7 +10,7 @@ class Inventory extends StatelessWidget {
       resizeToAvoidBottomInset: false, // 키보드에따라 화면밀림 방지.
       appBar: AppBar(
         automaticallyImplyLeading: false, // 앱바 뒤로가기버튼 없애기
-        title: const Text("inventory"),
+        title: const Text("재고현황"),
         // centerTitle: true,
       ),
       body: InventoryWidget(),

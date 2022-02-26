@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcg_office/src/widget/Inout_widget.dart';
+import 'package:mcg_office/src/widget/bottom_widget.dart';
 
 class Inout extends StatelessWidget {
   const Inout({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class Inout extends StatelessWidget {
         // centerTitle: true,
       ),
       body: InoutWiget(),
+      bottomNavigationBar: bottomNavigationBarWidget(),
     );
   }
 }

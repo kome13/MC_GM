@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:mcg_office/src/model/userinfo.dart';
 import 'package:http/http.dart' as http;
+import 'config.dart';
 
 class UserInfoRepository {
   Future<List<UserInfo>?> login(String id, String password) async {
     try {
       var response = await http.post(
-          Uri.parse("http://192.168.10.82:5000/user"), // IP주소 바꾸기
+          Uri.parse("http://${server_ip}:5000/user"), // IP주소 바꾸기
           headers: {
             "Accept": "application/json",
             "content-type": "application/json",

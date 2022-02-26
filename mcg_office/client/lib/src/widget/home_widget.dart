@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:mcg_office/src/component/inout.dart';
 import 'package:mcg_office/src/provider/inout_provider.dart';
@@ -8,8 +6,6 @@ import 'package:mcg_office/src/widget/inout_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomeWidget extends StatelessWidget {
-  get provider => null;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,7 +45,8 @@ class HomeWidget extends StatelessWidget {
       height: 150,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, 'inout');
+          _newbox();
+          // Navigator.pushNamed(context, 'inout');
           // 버튼 이동 코드 삽입
         },
         style: ButtonStyle(
@@ -70,6 +67,14 @@ class HomeWidget extends StatelessWidget {
           size: 70.0,
         ),
       ),
+    );
+  }
+
+  Widget _newbox() {
+    return Container(
+      child: Center(child: Text("test")),
+      decoration:
+          BoxDecoration(border: Border.all(width: 2.0, color: Colors.black)),
     );
   }
 

@@ -150,90 +150,86 @@ class LoginWidget extends StatelessWidget {
   //로그인 버튼 위젯
   Widget _buildSubmitButton(context) {
     print("re1");
-    return Consumer<Loginbutton>(builder: (context, value, _) {
-      print("re2");
-      print(value.userinfos);
-      return Container(
-          padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-          width: double.infinity,
-          height: 60,
-          child: ElevatedButton(
-              // 블럭 효과보이는 버튼
-              onPressed: () {
-                //id가 비었을경우
-                if (_idController.text.isEmpty) {
-                  _showDialog(
-                    context,
-                    'ID를 입력해 주세요',
-                  );
-                }
-                //password가 비었을 경우
-                else if (_passwordController.text.isEmpty) {
-                  _showDialog(
-                    context,
-                    'PASSWORD를 입력해 주세요',
-                  );
-                }
-                //입력칸이 전부 입려된 경우. 로그인 함수로 일치, 불일치 실행.
-                else {
-                  Provider.of<Loginbutton>(context, listen: false)
-                      .login(_idController.text, _passwordController.text);
-                  Navigator.pushNamed(context, 'landing');
-                }
-              }, // alert 경고창 모듈 만들어서
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0))),
-                foregroundColor: MaterialStateProperty.all(
-                  //모든 상태에따라 아래 색상표기
-                  Colors.white, // 글자색
-                ),
-                backgroundColor: MaterialStateProperty.resolveWith(
-                  // 버튼 상태에따라 색상 변경
-                  (states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return Colors.grey;
-                    } else {
-                      return Colors.blue;
-                    }
-                  },
-                ),
+    return Container(
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
+        width: double.infinity,
+        height: 60,
+        child: ElevatedButton(
+            // 블럭 효과보이는 버튼
+            onPressed: () {
+              //id가 비었을경우
+              if (_idController.text.isEmpty) {
+                _showDialog(
+                  context,
+                  'ID를 입력해 주세요',
+                );
+              }
+              //password가 비었을 경우
+              else if (_passwordController.text.isEmpty) {
+                _showDialog(
+                  context,
+                  'PASSWORD를 입력해 주세요',
+                );
+              }
+              //입력칸이 전부 입려된 경우. 로그인 함수로 일치, 불일치 실행.
+              else {
+                print('login');
+                Provider.of<Loginbutton>(context, listen: false)
+                    .login(_idController.text, _passwordController.text);
+                Navigator.pushNamed(context, 'landing');
+              }
+            }, // alert 경고창 모듈 만들어서
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0))),
+              foregroundColor: MaterialStateProperty.all(
+                //모든 상태에따라 아래 색상표기
+                Colors.white, // 글자색
               ),
-              child: const Text(
-                "Login",
-                style: TextStyle(fontSize: 20),
-              )));
-    });
-  }
-
-  // Widget _movingpage(){
-  //   return Navigator.pushNamed(context, '')
-  // }
-
-  // 팝업창 함수.
-  void _showDialog(context, String contents) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          title: new Text("다시 입력해주세요."),
-          content: SingleChildScrollView(child: new Text('$contents')),
-          actions: <Widget>[
-            Container(
-              child: new FlatButton(
-                child: const Text("Close"),
-                onPressed: () {
-                  Navigator.pop(context);
+              backgroundColor: MaterialStateProperty.resolveWith(
+                // 버튼 상태에따라 색상 변경
+                (states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.grey;
+                  } else {
+                    return Colors.blue;
+                  }
                 },
               ),
             ),
-          ],
-        );
-      },
-    );
+            child: const Text(
+              "Login",
+              style: TextStyle(fontSize: 20),
+            )));
   }
+}
+
+// Widget _movingpage(){
+//   return Navigator.pushNamed(context, '')
+// }
+
+// 팝업창 함수.
+void _showDialog(context, String contents) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        title: new Text("다시 입력해주세요."),
+        content: SingleChildScrollView(child: new Text('$contents')),
+        actions: <Widget>[
+          Container(
+            child: new FlatButton(
+              child: const Text("Close"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }

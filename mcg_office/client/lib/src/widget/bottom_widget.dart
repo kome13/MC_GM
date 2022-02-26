@@ -36,6 +36,7 @@ class bottomNavigationBarWidget extends StatelessWidget {
             title: Text('내역조회'),
           ),
         ],
+        type: BottomNavigationBarType.fixed,
         currentIndex: _bottomNavigationBar.currentNavigationIndex,
         selectedItemColor: Colors.amber[800],
         onTap: (index) {

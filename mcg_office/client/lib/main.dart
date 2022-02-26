@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mcg_office/src/component/landing.dart';
 import 'package:mcg_office/src/provider/bottom_provider.dart';
 import 'package:mcg_office/src/provider/inout_provider.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
@@ -12,7 +13,10 @@ import 'src/widget/inout_widget.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => IdCheckProvider()),
+      ChangeNotifierProvider(
+        create: (_) => IdCheckProvider(),
+        child: LoginWidget(),
+      ),
       ChangeNotifierProvider(
         create: (BuildContext context) => Loginbutton(),
         child: LoginWidget(),
@@ -42,7 +46,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: 'home',
+      initialRoute: 'landing',
       onGenerateRoute: Routers.generateRoute,
     );
   }

@@ -10,7 +10,7 @@ class History extends StatelessWidget {
       resizeToAvoidBottomInset: false, // 키보드에따라 화면밀림 방지.
       appBar: AppBar(
         automaticallyImplyLeading: false, // 앱바 뒤로가기버튼 없애기
-        title: const Text("history"),
+        title: const Text("내력조회"),
         // centerTitle: true,
       ),
       body: HistoryWidget(),
