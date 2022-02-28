@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mcg_office/src/model/userinfo.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
@@ -148,7 +150,7 @@ class LoginWidget extends StatelessWidget {
   }
 
   //로그인 버튼 위젯
-  Widget _buildSubmitButton(context) {
+  Widget _buildSubmitButton(BuildContext context) {
     print("re1");
     return Container(
         padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
@@ -173,11 +175,13 @@ class LoginWidget extends StatelessWidget {
               }
               //입력칸이 전부 입려된 경우. 로그인 함수로 일치, 불일치 실행.
               else {
-                print('login');
-                Provider.of<Loginbutton>(context, listen: false)
+                context
+                    .read<Loginbutton>()
                     .login(_idController.text, _passwordController.text);
-                Navigator.pushNamed(context, 'landing');
               }
+              //아직미처리..
+              // String errorMessage = '존재하지 않는 회원 정보입니다.';
+              // _showDialog(context, errorMessage);
             }, // alert 경고창 모듈 만들어서
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(

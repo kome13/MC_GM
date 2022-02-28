@@ -2,7 +2,7 @@
     package="com.example.app.mcg_office">
 
     <!-- Required to fetch data from the internet. -->
-<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.INTERNET"/>
 
    <application
         android:label="mcg_office"

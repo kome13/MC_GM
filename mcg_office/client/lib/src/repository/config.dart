@@ -1,1 +1,1 @@
-String server_ip = "192.168.200.183";
+String server_ip = "121.149.180.26";

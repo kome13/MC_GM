@@ -19,7 +19,7 @@ void main() {
       ),
       ChangeNotifierProvider(
         create: (BuildContext context) => Loginbutton(),
-        child: LoginWidget(),
+        child: Landing(),
       ),
       ChangeNotifierProvider(
         create: (BuildContext context) => InoutProvider(),

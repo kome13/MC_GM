@@ -13,7 +13,7 @@ class Splash extends StatelessWidget {
 
     return Material(
       child: Center(
-        child: Text("Splash Screen"),
+        child: Text("Splash Screen"), // 스플래쉬 디자인 , logo , 해야 함.
       ),
     );
   }
