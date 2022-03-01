@@ -46,7 +46,7 @@ class HomeWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           _newbox();
-          // Navigator.pushNamed(context, 'inout');
+          Navigator.pushNamed(context, 'inout');
           // 버튼 이동 코드 삽입
         },
         style: ButtonStyle(

@@ -25,15 +25,15 @@ class bottomNavigationBarWidget extends StatelessWidget {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('수불등록'),
+            label: '수불등록',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            title: Text('재고현황'),
+            label: '재고현황',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            title: Text('내역조회'),
+            label: '내역조회',
           ),
         ],
         type: BottomNavigationBarType.fixed,
