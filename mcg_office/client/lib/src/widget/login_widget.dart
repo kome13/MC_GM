@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:mcg_office/src/model/userinfo.dart';
+import 'package:mcg_office/src/component/login.dart';
 import 'package:mcg_office/src/provider/login_provider.dart';
-import 'package:mcg_office/src/widget/home_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginWidget extends StatelessWidget {
-  LoginWidget({Key? key}) : super(key: key);
-
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -158,7 +153,7 @@ class LoginWidget extends StatelessWidget {
         height: 60,
         child: ElevatedButton(
             // 블럭 효과보이는 버튼
-            onPressed: () {
+            onPressed: () async {
               //id가 비었을경우
               if (_idController.text.isEmpty) {
                 _showDialog(
@@ -175,10 +170,15 @@ class LoginWidget extends StatelessWidget {
               }
               //입력칸이 전부 입려된 경우. 로그인 함수로 일치, 불일치 실행.
               else {
-                context
+                if (!await context
                     .read<Loginbutton>()
-                    .login(_idController.text, _passwordController.text);
+                    .login(_idController.text, _passwordController.text)) {
+                  _showDialog(context, '존재하지 않는 사용자 정보입니다');
+                } else {
+                  context.read<Loginbutton>().Listener();
+                }
               }
+
               //아직미처리..
               // String errorMessage = '존재하지 않는 회원 정보입니다.';
               // _showDialog(context, errorMessage);
@@ -208,10 +208,6 @@ class LoginWidget extends StatelessWidget {
             )));
   }
 }
-
-// Widget _movingpage(){
-//   return Navigator.pushNamed(context, '')
-// }
 
 // 팝업창 함수.
 void _showDialog(context, String contents) {

@@ -47,28 +47,4 @@ class bottomNavigationBarWidget extends StatelessWidget {
       ),
     );
   }
-
-// switch를 통해서 페이지 변환하는 문구.      -> return을 component로 가야하는거아닌가?
-
 }
-
-
-//홈부분 , scaffold가 있다.
-/* scafold 부분은 다른곳에서 처리 하지 않나?
-  @override
-  Widget build(BuildContext context) {
-    _bottomNavigationBar = Provider.of<ButtomNavigationProvider>(context); // 어디에 갖다 붙여야 하나?
-    print("updatePage");
-    return Scaffold(
-      body: _navigationBody(),
-      bottomNavigationBar: _bottomNavigationBarWidget(), // 했던부분.
-      // bottomNavigationBar: Consumer<ButtomNavigationProvider>(  // listen false 일때
-      //   builder: (BuildContext context, ButtomNavigationProvider value,
-      //       Widget child) {
-      //     return _bottomNavigationBarWidget();
-      //   },
-      // ),
-    );
-  }
-
-  */
